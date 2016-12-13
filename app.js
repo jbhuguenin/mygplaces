@@ -1,4 +1,5 @@
 var express = require('express');
+var config  = require('./config');
 var app = express();
 
 app.use( require('body-parser')() );
@@ -11,14 +12,14 @@ app.all('*', function(req, res, next) {
 // Mount your api endpoint wherever you like
 app.get( '/api/places-autocomplete'
 , require('gplaces').proxy({
-    key: 'AIzaSyA7_ZdaGC_E7uBdNlLRIwWknm2rPv8DBj0',
+    key: config.key,
     type:'autocomplete'
   })
 );
 
 app.get( '/api/places-detail'
 , require('gplaces').proxy({
-    key: 'AIzaSyA7_ZdaGC_E7uBdNlLRIwWknm2rPv8DBj0',
+    key: config.key,
     type: 'details'
   })
 );

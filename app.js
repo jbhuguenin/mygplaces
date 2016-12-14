@@ -1,6 +1,11 @@
-var express = require('express');
 var config  = require('./config');
-var app = express();
+var fs      = require('fs');
+var https   = require('https');
+var app     = require('express')();
+var options = {
+    key  : fs.readFileSync('server.key'),
+    cert : fs.readFileSync('server.crt')
+};
 
 app.use( require('body-parser')() );
 app.all('*', function(req, res, next) {
@@ -24,6 +29,7 @@ app.get( '/api/places-detail'
   })
 );
 
-app.listen( 8080, function( error ){
-  /* ... */
+
+https.createServer(options, app).listen(8080, function () {
+    console.log('Started!');
 });

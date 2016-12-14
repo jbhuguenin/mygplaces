@@ -3,8 +3,8 @@ var fs      = require('fs');
 var https   = require('https');
 var app     = require('express')();
 var options = {
-    key  : fs.readFileSync('server.key'),
-    cert : fs.readFileSync('server.crt')
+    key  : fs.readFileSync(config.ssl_path + 'server.key'),
+    cert : fs.readFileSync(config.ssl_path + 'server.crt')
 };
 
 app.use( require('body-parser')() );
